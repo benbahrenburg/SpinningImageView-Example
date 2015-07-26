@@ -17,11 +17,11 @@ extension UIView {
         
         if self.layer.animationForKey(kAnimationKey) == nil {
             let animationRotate = CABasicAnimation(keyPath: "transform.rotation")
+            animationRotate.duration = duration
+            animationRotate.repeatCount = Float.infinity
             
             animationRotate.fromValue = 0.0
             animationRotate.toValue = Float(M_PI * 2.0)
-            animationRotate.duration = duration
-            animationRotate.repeatCount = Float.infinity
             
             self.layer.addAnimation(animationRotate, forKey: kAnimationKey)
         }
