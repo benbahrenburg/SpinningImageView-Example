@@ -16,14 +16,12 @@ extension UIView {
         let kAnimationKey = "rotation"
         
         if self.layer.animationForKey(kAnimationKey) == nil {
-            let animationRotate = CABasicAnimation(keyPath: "transform.rotation")
-            
-            animationRotate.fromValue = 0.0
-            animationRotate.toValue = Float(M_PI * 2.0)
-            animationRotate.duration = duration
-            animationRotate.repeatCount = Float.infinity
-            
-            self.layer.addAnimation(animationRotate, forKey: kAnimationKey)
+            let animate = CABasicAnimation(keyPath: "transform.rotation")
+            animate.fromValue = 0.0
+            animate.toValue = Float(M_PI * 2.0)
+            animate.duration = duration
+            animate.repeatCount = Float.infinity
+            self.layer.addAnimation(animate, forKey: kAnimationKey)
         }
     }
     
