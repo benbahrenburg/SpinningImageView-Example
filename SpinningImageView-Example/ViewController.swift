@@ -14,13 +14,15 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var syncImage: UIImageView!
     @IBOutlet weak var syncContainer: UIStackView!
     
+    let tapSyncMethod = "handleSyncTap:"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let syncTapButton = UITapGestureRecognizer(target: self, action: Selector("handleSyncTap:"))
+        let syncTapButton = UITapGestureRecognizer(target: self, action: Selector(tapSyncMethod))
         syncTapButton.delegate = self
 
-        let syncTapView = UITapGestureRecognizer(target: self, action: Selector("handleSyncTap:"))
+        let syncTapView = UITapGestureRecognizer(target: self, action: Selector(tapSyncMethod))
         syncTapView.delegate = self
         
         syncContainer.addGestureRecognizer(syncTapView)
@@ -30,10 +32,8 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
-    
     func startSpinning() {
         syncImage.image = UIImage(named:"sync-spinning")
         syncImage.startRotating()

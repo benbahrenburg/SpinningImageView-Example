@@ -9,14 +9,13 @@
 import Foundation
 import UIKit
 
-//Const used by this extension
-let kBXBExtForAnimationKey = "rotation"
-
 extension UIView {
     
     //Start Rotating view
     func startRotating(duration: Double = 1) {
-        if self.layer.animationForKey(kBXBExtForAnimationKey) == nil {
+        let kAnimationKey = "rotation"
+        
+        if self.layer.animationForKey(kAnimationKey) == nil {
             let animationRotate = CABasicAnimation(keyPath: "transform.rotation")
             
             animationRotate.fromValue = 0.0
@@ -24,14 +23,16 @@ extension UIView {
             animationRotate.duration = duration
             animationRotate.repeatCount = Float.infinity
             
-            self.layer.addAnimation(animationRotate, forKey: kBXBExtForAnimationKey)
+            self.layer.addAnimation(animationRotate, forKey: kAnimationKey)
         }
     }
     
     //Stop rotating view
     func stopRotating() {
-        if self.layer.animationForKey(kBXBExtForAnimationKey) != nil {
-            self.layer.removeAnimationForKey(kBXBExtForAnimationKey)
+        let kAnimationKey = "rotation"
+        
+        if self.layer.animationForKey(kAnimationKey) != nil {
+            self.layer.removeAnimationForKey(kAnimationKey)
         }
     }
     
