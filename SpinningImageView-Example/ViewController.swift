@@ -14,15 +14,15 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var syncImage: UIImageView!
     @IBOutlet weak var syncContainer: UIStackView!
     
-    let tapSyncMethod = "handleSyncTap:"
+//    let tapSyncMethod = "handleSyncTap:"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let syncTapButton = UITapGestureRecognizer(target: self, action: Selector(tapSyncMethod))
+        let syncTapButton = UITapGestureRecognizer(target: self, action: #selector(handleSyncTap(sender:)))
         syncTapButton.delegate = self
 
-        let syncTapView = UITapGestureRecognizer(target: self, action: Selector(tapSyncMethod))
+        let syncTapView = UITapGestureRecognizer(target: self, action: #selector(handleSyncTap(sender:)))
         syncTapView.delegate = self
         
         syncContainer.addGestureRecognizer(syncTapView)
@@ -44,14 +44,13 @@ class ViewController: UIViewController, UIGestureRecognizerDelegate {
         syncImage.image = UIImage(named:"sync-not-spinning")
     }
     
-    func handleSyncTap(sender: UITapGestureRecognizer? = nil) {
+    @objc func handleSyncTap(sender: UITapGestureRecognizer? = nil) {
         startSpinning()
 
-        let dispatchTime: dispatch_time_t = dispatch_time(DISPATCH_TIME_NOW, Int64(3 * Double(NSEC_PER_SEC)))
-        
-        dispatch_after(dispatchTime, dispatch_get_main_queue(), {
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3)) {
             self.stopSpinning()
-        })
+        }
+        
     }
 
 }
